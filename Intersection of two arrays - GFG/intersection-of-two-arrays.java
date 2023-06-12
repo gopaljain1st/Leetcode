@@ -53,23 +53,13 @@ class Solution {
     // Function to return the count of the number of elements in
     // the intersection of two arrays.
     public static int NumberofElementsInIntersection(int a[], int b[], int n, int m) {
-        int count =0;
-        if (n>=m){
-            Set<Integer> hashSet = new HashSet<Integer>(m);
-            for(int i=0;i<m;i++){
-                hashSet.add(b[i]);
-            }
-            for (int i=0;i<n;i++){
-                count += hashSet.remove(a[i]) ? 1 : 0;
-            }
-        } else {
-                Set<Integer> hashSet = new HashSet<Integer>(n);
-                for(int i=0;i<n;i++){
-                    hashSet.add(a[i]);
-                }
-                for (int i=0;i<m;i++){
-                    count += hashSet.remove(b[i]) ? 1 : 0;
-                }
+       int count =0;
+        Set<Integer> hashSet = new HashSet<Integer>(Math.min(n, m));
+        for(int i=0;i<Math.min(n,m);i++){
+            hashSet.add(n>=m ? b[i] : a[i]);
+        }
+        for (int i=0;i<Math.max(n,m);i++){
+            count += hashSet.remove(n>=m ? a[i] : b[i]) ? 1 : 0;
         }
         return count;
     }
