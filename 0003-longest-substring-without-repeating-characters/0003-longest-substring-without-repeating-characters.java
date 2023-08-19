@@ -10,6 +10,9 @@ class Solution {
             }
             characters.clear();
             max = Math.max(max, count);
+            if(max == s.length()-i){
+                return max;
+            }
         }
         return max;
     }
